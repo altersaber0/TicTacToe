@@ -15,6 +15,7 @@ const playerO = {
     chosen: []
 }
 
+// playerX always starts
 let currentPlayer = playerX
 
 const winningCombos = [
@@ -28,6 +29,7 @@ const winningCombos = [
     [3,5,7]
 ]
 
+// giving each tile an Event Listener
 buttons.forEach((button) => {
     button.onclick = (e) => {
         turn(currentPlayer, button)
@@ -46,7 +48,7 @@ function turn(player, button) {
     // calling a function to know if someone already won (gameover if so)
     if (hasWon(player)) {
         buttons.forEach((button) => {
-            button.onclick = null
+            button.onclick = null // disabling the game field
         })
         return gameOver(player)
     }
@@ -73,6 +75,7 @@ function hasWon(player) {
 }
 
 function gameOver(playerWon) {
+    // empty the currentTurn <span> and display a <p> with a winning message
     currentTurn.textContent = ""
     const p = document.createElement("p")
     p.textContent = `Player ${playerWon.symbol} won!`
